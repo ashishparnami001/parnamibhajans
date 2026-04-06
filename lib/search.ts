@@ -6,10 +6,8 @@ export interface TagFrequency {
   count: number
 }
 
-export function searchBhajans(query: string, bhajans: Bhajan[]) {
-  if (!query.trim()) return []
-
-  const fuse = new Fuse(bhajans, {
+export function createSearchIndex(bhajans: Bhajan[]) {
+  return new Fuse(bhajans, {
     keys: [
       { name: 'title', weight: 0.4 },
       { name: 'search_keywords', weight: 0.3 },
@@ -19,10 +17,14 @@ export function searchBhajans(query: string, bhajans: Bhajan[]) {
     ],
     threshold: 0.4,
     includeMatches: true,
+    includeScore: true,
     minMatchCharLength: 2,
   })
+}
 
-  return fuse.search(query)
+export function searchBhajans(query: string, bhajans: Bhajan[]): Fuse.FuseResult<Bhajan>[] {
+  if (!query.trim()) return []
+  return createSearchIndex(bhajans).search(query)
 }
 
 export function getTagFrequencies(bhajans: Bhajan[]): TagFrequency[] {

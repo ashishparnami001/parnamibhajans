@@ -36,6 +36,11 @@ describe('searchBhajans', () => {
     const results = searchBhajans('', BHAJANS)
     expect(results).toHaveLength(0)
   })
+
+  it('does not match unrelated bhajans for Hinglish query', () => {
+    const results = searchBhajans('ram', BHAJANS)
+    expect(results.some(r => r.item.id === 2)).toBe(false)
+  })
 })
 
 describe('getTagFrequencies', () => {
