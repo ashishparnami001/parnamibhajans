@@ -10,7 +10,7 @@ interface Props {
   authors: Author[]
 }
 
-const sel = "rounded-lg border border-amber-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm"
+const sel = "rounded-lg border border-[#D4C4A0] dark:border-[#1B3055] bg-[#FDFAF5] dark:bg-[#0F2040] text-[#3D2010] dark:text-[#EDE4D2] px-3 py-2 text-sm"
 
 export default function BrowseFilters({ bhajans, authors }: Props) {
   const [authorFilter, setAuthorFilter] = useState('all')
@@ -55,7 +55,7 @@ export default function BrowseFilters({ bhajans, authors }: Props) {
           {collections.map(c => <option key={c} value={c}>{c}</option>)}
         </select>
       </div>
-      <p className="text-sm text-gray-500 mb-4">{filtered.length} भजन</p>
+      <p className="text-sm text-[#7A6550] mb-4">{filtered.length} भजन</p>
       <div className="flex flex-col gap-3">
         {filtered.map(b => (
           <BhajanCard key={b.id} bhajan={b} authorName={authorMap[b.author_id]} />

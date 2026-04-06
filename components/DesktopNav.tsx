@@ -22,8 +22,8 @@ export default function DesktopNav() {
             key={item.href}
             href={item.href}
             className={isActive
-              ? 'text-orange-600 dark:text-orange-400 font-semibold'
-              : 'text-gray-600 dark:text-gray-300 hover:text-orange-500'
+              ? 'text-[#E8C060] font-semibold border-b-2 border-[#E8C060]'
+              : 'text-[#C8DFF0] hover:text-[#E8C060]'
             }
           >
             {item.label}

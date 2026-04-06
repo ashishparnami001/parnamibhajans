@@ -1,0 +1,57 @@
+- application [ref=e1]:
+  - iframe [ref=e2]:
+    
+  - iframe [ref=e3]:
+    
+  - banner "Menu bar" [ref=e4]:
+    - generic [ref=e7]:
+      - link "Sheets home" [ref=e9] [cursor=pointer]:
+        - /url: https://docs.google.com/spreadsheets/?usp=sheets_web
+      - generic [ref=e16]:
+        - generic "Parnami Bhajans Data" [ref=e18]:
+          - generic [ref=e20]: Parnami Bhajans Data
+          - 'button "Document status: Saved to Drive." [ref=e24]':
+            - generic [ref=e29] [cursor=pointer]: Saved to Drive
+        - generic [ref=e32]:
+          - button "Share. Anyone with the link. Anyone who has the link can access. No sign-in required." [disabled] [ref=e34]
+          - link "Sign in" [ref=e39] [cursor=pointer]:
+            - /url: https://accounts.google.com/ServiceLogin?service=wise&passive=1209600&osid=1&continue=https://docs.google.com/spreadsheets/d/1m_xPFeWmm4IOZHO84kz2V3gkgrWZ5h2R-7ytIp_0p7I/edit&followup=https://docs.google.com/spreadsheets/d/1m_xPFeWmm4IOZHO84kz2V3gkgrWZ5h2R-7ytIp_0p7I/edit&ltmpl=sheets&ec=GAZAmwI
+    - generic [ref=e41]:
+      - generic [ref=e42]:
+        - toolbar "Search the menus (Option+/)" [ref=e43]:
+          - combobox "Menus" [ref=e45]
+        - toolbar "Main" [ref=e46]:
+          - button "Print (⌘P)" [ref=e47] [cursor=pointer]
+          - button "Filter views" [ref=e52] [cursor=pointer]
+          - combobox "Zoom" [ref=e61] [cursor=pointer]:
+            - option "Zoom list. 100% selected." [selected] [ref=e64]:
+              - textbox "Zoom" [ref=e65]: 100%
+          - button "Mode" [ref=e69] [cursor=pointer]:
+            - generic [ref=e70]: View only
+      - toolbar "Mode and view" [ref=e73]:
+        - button "Hide the menus (Ctrl+Shift+F)" [ref=e74] [cursor=pointer]
+    - generic [ref=e81]:
+      - generic "Name box (⌘ + J)" [ref=e82]:
+        - textbox [ref=e83]: A1
+        - button "Name box menu button. Select one of the menu items to navigate to its corresponding named range." [ref=e85] [cursor=pointer]
+      - textbox [ref=e101]
+  - navigation "Sheet tab bar" [ref=e133]:
+    - toolbar [ref=e134]:
+      - button "All Sheets" [ref=e135] [cursor=pointer]
+    - toolbar [ref=e144]:
+      - button "Bhajans" [ref=e145]:
+        - generic [ref=e149]: Bhajans
+      - button "Lyricists" [ref=e153] [cursor=pointer]:
+        - generic [ref=e157]: Lyricists
+    - toolbar [ref=e161]:
+      - button "Scroll left" [disabled] [ref=e162]
+      - button "Scroll right" [ref=e167] [cursor=pointer]
+  - generic [ref=e172]:
+    - textbox [active]
+  - link "Turn on screen reader support" [ref=e173] [cursor=pointer]:
+    - /url: "#"
+  - textbox [ref=e174]
+  - region [ref=e175]: To enable screen reader support, press ⌘+Option+Z To learn about keyboard shortcuts, press ⌘slash
+  - region
+  - iframe [ref=e177]:
+    

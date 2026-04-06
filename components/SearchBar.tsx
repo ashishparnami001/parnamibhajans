@@ -59,7 +59,7 @@ export default function SearchBar({
         value={query}
         onChange={e => setQuery(e.target.value)}
         placeholder={placeholder}
-        className="flex-1 rounded-xl border border-amber-300 bg-white dark:bg-gray-900 dark:border-gray-600 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-orange-400"
+        className="flex-1 rounded-xl border border-[#D4C4A0] bg-[#FDFAF5] dark:bg-[#0F2040] dark:border-[#1B3055] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#1B4E7A] dark:focus:ring-[#2E6FA8]"
       />
       <button
         type="button"
@@ -67,15 +67,15 @@ export default function SearchBar({
         aria-label={listening ? 'Listening...' : 'Voice search'}
         className={`rounded-xl px-4 py-3 border text-xl transition-colors ${
           listening
-            ? 'bg-red-100 border-red-400 text-red-600 animate-pulse'
-            : 'bg-white dark:bg-gray-900 border-amber-300 dark:border-gray-600 hover:bg-amber-50'
+            ? 'bg-[#C4962A] border-[#C4962A] text-white animate-pulse'
+            : 'bg-[#FDFAF5] dark:bg-[#0F2040] border-[#D4C4A0] dark:border-[#1B3055] hover:bg-[#EDE4D2]'
         }`}
       >
         🎤
       </button>
       <button
         type="submit"
-        className="rounded-xl px-4 py-3 bg-orange-500 text-white font-medium hover:bg-orange-600 transition-colors"
+        className="rounded-xl px-4 py-3 bg-[#1B4E7A] hover:bg-[#2E6FA8] text-white font-medium transition-colors"
       >
         खोज
       </button>

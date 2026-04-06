@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Noto_Sans_Devanagari } from 'next/font/google'
+import { Noto_Sans_Devanagari, Noto_Serif_Devanagari, Crimson_Pro } from 'next/font/google'
 import './globals.css'
 import BottomNav from '@/components/BottomNav'
 import DesktopNav from '@/components/DesktopNav'
@@ -13,6 +13,21 @@ const notoDevanagari = Noto_Sans_Devanagari({
   weight: ['400', '500', '600'],
 })
 
+const notoSerifDevanagari = Noto_Serif_Devanagari({
+  subsets: ['devanagari'],
+  variable: '--font-noto-serif-devanagari',
+  display: 'swap',
+  weight: ['400', '600', '700'],
+})
+
+const crimsonPro = Crimson_Pro({
+  subsets: ['latin'],
+  variable: '--font-crimson',
+  display: 'swap',
+  weight: ['400', '600'],
+  style: ['normal', 'italic'],
+})
+
 export const metadata: Metadata = {
   title: SITE_NAME,
   description: SITE_TAGLINE,
@@ -21,9 +36,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="hi" suppressHydrationWarning>
-      <body className={`${notoDevanagari.variable} min-h-screen pb-20 md:pb-0`}>
-        <header className="hidden md:flex items-center justify-between px-6 py-3 border-b border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-700 sticky top-0 z-40">
-          <span className="font-semibold text-orange-600 text-lg">{SITE_NAME}</span>
+      <body className={`${notoDevanagari.variable} ${notoSerifDevanagari.variable} ${crimsonPro.variable} min-h-screen pb-20 md:pb-0`}>
+        <header className="hidden md:flex items-center justify-between px-6 py-3 bg-[#1B4E7A] dark:bg-[#0F2040] sticky top-0 z-40 shadow-md">
+          <span className={`${crimsonPro.variable} font-semibold text-[#C4962A] text-xl tracking-wide`}>{SITE_NAME}</span>
           <div className="flex items-center gap-2">
             <DesktopNav />
             <DarkModeToggle />

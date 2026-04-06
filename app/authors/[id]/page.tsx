@@ -23,20 +23,20 @@ export default async function AuthorDetailPage({ params }: Props) {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
-      <Link href="/authors" className="text-sm text-orange-600 hover:underline mb-4 block">
+      <Link href="/authors" className="text-sm text-[#C4962A] dark:text-[#E8C060] hover:underline mb-4 block">
         ← रचयिता
       </Link>
       <div className="flex items-start gap-4 mb-6">
-        <div className="w-20 h-20 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-3xl shrink-0">
+        <div className="w-20 h-20 rounded-full bg-[#EDE4D2] dark:bg-[#1B3055] flex items-center justify-center text-3xl shrink-0">
           🙏
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{author.name}</h1>
-          {author.bio && <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm">{author.bio}</p>}
-          {author.contact && <p className="text-sm text-gray-500 mt-1">📞 {author.contact}</p>}
+          <h1 className="text-2xl font-bold text-[#1B4E7A] dark:text-[#C8DFF0]">{author.name}</h1>
+          {author.bio && <p className="text-[#7A6550] dark:text-[#8A9AAA] mt-1 text-sm">{author.bio}</p>}
+          {author.contact && <p className="text-sm text-[#7A6550] dark:text-[#8A9AAA] mt-1">📞 {author.contact}</p>}
         </div>
       </div>
-      <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+      <h2 className="text-[#1B4E7A] dark:text-[#8A9AAA] uppercase tracking-widest text-xs font-semibold mb-3">
         भजन ({authorBhajans.length})
       </h2>
       <div className="flex flex-col gap-3">

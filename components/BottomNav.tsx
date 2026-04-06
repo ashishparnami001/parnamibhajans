@@ -15,7 +15,7 @@ export default function BottomNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-700 md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#0F3A5C] dark:border-[#1B3055] bg-[#1B4E7A] dark:bg-[#0F2040] md:hidden">
       <ul className="flex items-center justify-around h-16">
         {NAV_ITEMS.map(item => {
           const isActive = item.href === '/'
@@ -27,8 +27,8 @@ export default function BottomNav() {
                 href={item.href}
                 className={`flex flex-col items-center gap-0.5 px-2 py-1 text-xs rounded-md transition-colors ${
                   isActive
-                    ? 'text-orange-600 dark:text-orange-400 font-semibold'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-orange-500'
+                    ? 'text-[#E8C060] dark:text-[#E8C060] font-semibold'
+                    : 'text-[#C8DFF0] dark:text-[#7AB0A0]'
                 }`}
               >
                 <span className="text-sm">{item.labelHi}</span>
@@ -38,7 +38,7 @@ export default function BottomNav() {
           )
         })}
       </ul>
-      <div className="flex items-center pl-2 border-l border-gray-200 dark:border-gray-700 ml-1">
+      <div className="flex items-center pl-2 border-l border-[#0F3A5C] dark:border-[#1B3055] ml-1">
         <DarkModeToggle />
       </div>
     </nav>

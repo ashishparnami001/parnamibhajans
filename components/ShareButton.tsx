@@ -27,7 +27,7 @@ export default function ShareButton({ title }: Props) {
   return (
     <button
       onClick={share}
-      className="text-xs px-2 py-1 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      className="text-xs px-2 py-1 rounded-lg border border-[#D4C4A0] dark:border-[#1B3055] text-[#7A6550] hover:bg-[#EDE4D2] dark:hover:bg-[#1B3055] transition-colors"
     >
       {copied ? '✓ Copied' : '📤 Share'}
     </button>

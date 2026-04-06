@@ -23,23 +23,23 @@ export default async function BhajanDetailPage({ params }: Props) {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
-      <Link href="/bhajans" className="text-sm text-orange-600 hover:underline mb-4 block">
+      <Link href="/bhajans" className="text-sm text-[#C4962A] hover:text-[#1B4E7A] dark:text-[#E8C060] mb-4 block">
         ← सभी भजन
       </Link>
 
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">{bhajan.title}</h1>
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500">
-          {author && <Link href={`/authors/${author.id}`} className="text-orange-600 hover:underline">{author.name}</Link>}
+        <h1 className="text-2xl font-bold text-[#1B4E7A] dark:text-[#C8DFF0] mb-1">{bhajan.title}</h1>
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[#7A6550] dark:text-[#8A9AAA]">
+          {author && <Link href={`/authors/${author.id}`} className="text-[#C4962A] hover:text-[#1B4E7A] dark:text-[#E8C060]">{author.name}</Link>}
           <span>{bhajan.year}</span>
           {bhajan.collections.map(c => (
             <Link key={c} href={`/collections/${encodeURIComponent(c)}`}
-              className="text-orange-600 hover:underline">{c}</Link>
+              className="text-[#C4962A] hover:text-[#1B4E7A] dark:text-[#E8C060]">{c}</Link>
           ))}
         </div>
       </div>
 
-      <div className="flex items-center justify-between mb-6 py-3 border-y border-amber-200 dark:border-gray-700">
+      <div className="flex items-center justify-between mb-6 py-3 border-y border-[#D4C4A0] dark:border-[#1B3055]">
         <FontSizeControl />
         <div className="flex gap-2">
           <WakeLockButton />
@@ -47,7 +47,7 @@ export default async function BhajanDetailPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="bhajan-text text-gray-900 dark:text-gray-100">
+      <div className="bhajan-text">
         {bhajan.text.split('\n').map((line, i) => (
           <p key={i} className={line.trim() === '' ? 'my-4' : 'my-1'}>
             {line || '\u00A0'}
@@ -59,7 +59,7 @@ export default async function BhajanDetailPage({ params }: Props) {
         <div className="mt-8 flex flex-wrap gap-2">
           {bhajan.tags.map(tag => (
             <Link key={tag} href={`/search?q=${encodeURIComponent(tag)}`}
-              className="px-2 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm hover:bg-amber-200">
+              className="tag-temple">
               {tag}
             </Link>
           ))}

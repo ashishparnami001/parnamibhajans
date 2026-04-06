@@ -18,16 +18,16 @@ export default async function HomePage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-orange-700 dark:text-orange-400 mb-1">{SITE_NAME}</h1>
-        <p className="text-gray-500 dark:text-gray-400">{SITE_TAGLINE}</p>
-        <p className="text-sm text-gray-400 mt-1">{bhajans.length} भजन</p>
+        <h1 className="text-3xl font-bold text-[#1B4E7A] dark:text-[#C8DFF0] mb-1">{SITE_NAME}</h1>
+        <p className="text-[#7A6550] dark:text-[#8A9AAA]">{SITE_TAGLINE}</p>
+        <p className="text-sm text-[#7A6550] dark:text-[#8A9AAA] mt-1">{bhajans.length} भजन</p>
       </div>
 
       <SearchBar />
 
       {tagFreqs.length > 0 && (
         <section className="mt-8">
-          <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">
+          <h2 className="text-[#1B4E7A] dark:text-[#8A9AAA] uppercase tracking-widest text-xs font-semibold mb-3">
             Keywords
           </h2>
           <KeywordCloud tags={tagFreqs} />
@@ -35,7 +35,7 @@ export default async function HomePage() {
       )}
 
       <section className="mt-8">
-        <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">
+        <h2 className="text-[#1B4E7A] dark:text-[#8A9AAA] uppercase tracking-widest text-xs font-semibold mb-3">
           Recent Bhajans / हाल के भजन
         </h2>
         <div className="flex flex-col gap-3">
@@ -44,7 +44,7 @@ export default async function HomePage() {
           ))}
         </div>
         <div className="text-center mt-4">
-          <Link href="/bhajans" className="text-orange-600 hover:underline text-sm">
+          <Link href="/bhajans" className="text-[#C4962A] hover:text-[#1B4E7A] dark:text-[#E8C060] text-sm">
             सभी भजन देखें →
           </Link>
         </div>
