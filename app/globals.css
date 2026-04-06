@@ -2,27 +2,25 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --font-noto-devanagari: "Noto Sans Devanagari", system-ui, sans-serif;
+@layer base {
+  :root {
+    --font-size-bhajan: 1.25rem;
+  }
+
+  body {
+    background-color: rgb(255 251 235); /* amber-50 */
+    color: rgb(17 24 39); /* gray-900 */
+  }
+
+  .dark body {
+    background-color: rgb(3 7 18); /* gray-950 */
+    color: rgb(243 244 246); /* gray-100 */
+  }
 }
 
-:root {
-  --font-size-bhajan: 1.25rem;
-}
-
-body {
-  background-color: rgb(255 251 235); /* amber-50 */
-  color: rgb(17 24 39); /* gray-900 */
-  font-family: var(--font-noto-devanagari);
-}
-
-.dark body {
-  background-color: rgb(3 7 18); /* gray-950 */
-  color: rgb(243 244 246); /* gray-100 */
-}
-
-.bhajan-text {
-  font-size: var(--font-size-bhajan);
-  line-height: 1.8;
-  font-family: var(--font-noto-devanagari), serif;
+@layer components {
+  .bhajan-text {
+    font-size: var(--font-size-bhajan);
+    line-height: 1.8;
+  }
 }
