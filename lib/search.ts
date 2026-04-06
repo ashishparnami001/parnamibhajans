@@ -1,4 +1,4 @@
-import Fuse from 'fuse.js'
+import Fuse, { FuseResult } from 'fuse.js'
 import { Bhajan } from './types'
 
 export interface TagFrequency {
@@ -22,7 +22,7 @@ export function createSearchIndex(bhajans: Bhajan[]) {
   })
 }
 
-export function searchBhajans(query: string, bhajans: Bhajan[]): Fuse.FuseResult<Bhajan>[] {
+export function searchBhajans(query: string, bhajans: Bhajan[]): FuseResult<Bhajan>[] {
   if (!query.trim()) return []
   return createSearchIndex(bhajans).search(query)
 }
