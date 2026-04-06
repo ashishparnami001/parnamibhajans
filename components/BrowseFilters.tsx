@@ -3,10 +3,14 @@ import { useState, useMemo } from 'react'
 import { Bhajan, Author } from '@/lib/types'
 import BhajanCard from './BhajanCard'
 
+type BhajanSummary = Omit<Bhajan, 'text'>
+
 interface Props {
-  bhajans: Bhajan[]
+  bhajans: BhajanSummary[]
   authors: Author[]
 }
+
+const sel = "rounded-lg border border-amber-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm"
 
 export default function BrowseFilters({ bhajans, authors }: Props) {
   const [authorFilter, setAuthorFilter] = useState('all')
@@ -34,8 +38,6 @@ export default function BrowseFilters({ bhajans, authors }: Props) {
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
     [bhajans, authorFilter, yearFilter, collectionFilter]
   )
-
-  const sel = "rounded-lg border border-amber-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm"
 
   return (
     <div>

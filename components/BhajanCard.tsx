@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import { Bhajan } from '@/lib/types'
 
+type BhajanSummary = Omit<Bhajan, 'text'>
+
 interface Props {
-  bhajan: Bhajan
+  bhajan: BhajanSummary
   authorName?: string
 }
 
 export default function BhajanCard({ bhajan, authorName }: Props) {
-  const preview = bhajan.text.split('\n').slice(0, 2).join(' / ')
-
   return (
     <Link
       href={`/bhajans/${bhajan.id}`}
@@ -17,11 +17,8 @@ export default function BhajanCard({ bhajan, authorName }: Props) {
       <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">
         {bhajan.title}
       </h2>
-      <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mb-2">
-        {preview}
-      </p>
       <div className="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
-        <span>{authorName}</span>
+        <span>{authorName ?? 'अज्ञात'}</span>
         <span>{bhajan.year}</span>
       </div>
       {bhajan.tags.length > 0 && (

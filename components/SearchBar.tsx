@@ -41,6 +41,7 @@ export default function SearchBar({
 
     recognition.onstart = () => setListening(true)
     recognition.onend = () => setListening(false)
+    recognition.onerror = () => setListening(false)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     recognition.onresult = (event: any) => {
       const transcript = event.results[0][0].transcript

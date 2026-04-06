@@ -53,7 +53,15 @@ export async function fetchBhajans(): Promise<Bhajan[]> {
 }
 
 export async function fetchAuthors(): Promise<Author[]> {
-  const res = await fetch(AUTHORS_CSV_URL, { next: { revalidate: 3600 } })
-  if (!res.ok) throw new Error(`Failed to fetch authors: ${res.status}`)
-  return parseAuthorsCSV(await res.text())
+  try {
+    const res = await fetch(AUTHORS_CSV_URL, { next: { revalidate: 3600 } })
+    if (!res.ok) {
+      console.warn(`fetchAuthors: HTTP ${res.status} — returning empty array. Set AUTHORS_CSV_URL env var.`)
+      return []
+    }
+    return parseAuthorsCSV(await res.text())
+  } catch (err) {
+    console.warn('fetchAuthors: fetch failed — returning empty array.', err)
+    return []
+  }
 }

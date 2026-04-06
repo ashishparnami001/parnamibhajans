@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { fetchBhajans, fetchAuthors } from '@/lib/fetchSheets'
 import { getTagFrequencies } from '@/lib/search'
 import { RECENT_BHAJANS_COUNT, SITE_NAME, SITE_TAGLINE } from '@/lib/config'
@@ -43,9 +44,9 @@ export default async function HomePage() {
           ))}
         </div>
         <div className="text-center mt-4">
-          <a href="/bhajans" className="text-orange-600 hover:underline text-sm">
+          <Link href="/bhajans" className="text-orange-600 hover:underline text-sm">
             सभी भजन देखें →
-          </a>
+          </Link>
         </div>
       </section>
     </div>
