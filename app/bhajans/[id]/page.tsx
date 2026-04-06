@@ -30,7 +30,7 @@ export default async function BhajanDetailPage({ params }: Props) {
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">{bhajan.title}</h1>
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500">
-          {author && <span>{author.name}</span>}
+          {author && <Link href={`/authors/${author.id}`} className="text-orange-600 hover:underline">{author.name}</Link>}
           <span>{bhajan.year}</span>
           {bhajan.collections.map(c => (
             <Link key={c} href={`/collections/${encodeURIComponent(c)}`}
