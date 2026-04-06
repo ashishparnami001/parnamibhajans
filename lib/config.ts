@@ -6,7 +6,7 @@ export const BHAJANS_CSV_URL =
 
 export const AUTHORS_CSV_URL =
   process.env.AUTHORS_CSV_URL ??
-  `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=1`
+  `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=GID_HERE`
 
 export const SITE_NAME = 'Parnami Bhajans'
 export const SITE_TAGLINE = 'भजन संग्रह'
