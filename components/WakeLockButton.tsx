@@ -21,8 +21,8 @@ export default function WakeLockButton() {
         setLock(sentinel)
         setActive(true)
         sentinel.addEventListener('release', () => setActive(false))
-      } catch {
-        // Wake Lock denied or unsupported
+      } catch (err) {
+        console.warn('Wake Lock request failed:', err)
       }
     }
   }

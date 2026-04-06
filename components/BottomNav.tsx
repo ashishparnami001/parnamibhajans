@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import DarkModeToggle from './DarkModeToggle'
 
 const NAV_ITEMS = [
   { href: '/', label: 'Home', labelHi: 'होम' },
@@ -37,6 +38,9 @@ export default function BottomNav() {
           )
         })}
       </ul>
+      <div className="flex items-center pl-2 border-l border-gray-200 dark:border-gray-700 ml-1">
+        <DarkModeToggle />
+      </div>
     </nav>
   )
 }

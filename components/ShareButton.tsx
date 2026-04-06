@@ -1,14 +1,26 @@
 'use client'
+import { useState } from 'react'
 
 interface Props { title: string }
 
 export default function ShareButton({ title }: Props) {
+  const [copied, setCopied] = useState(false)
+
   async function share() {
     if (navigator.share) {
-      await navigator.share({ title, url: window.location.href })
+      try {
+        await navigator.share({ title, url: window.location.href })
+      } catch {
+        // User cancelled share — do nothing
+      }
     } else {
-      await navigator.clipboard.writeText(window.location.href)
-      alert('Link copied to clipboard!')
+      try {
+        await navigator.clipboard.writeText(window.location.href)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      } catch {
+        // Clipboard not available
+      }
     }
   }
 
@@ -17,7 +29,7 @@ export default function ShareButton({ title }: Props) {
       onClick={share}
       className="text-xs px-2 py-1 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
     >
-      📤 Share
+      {copied ? '✓ Copied' : '📤 Share'}
     </button>
   )
 }

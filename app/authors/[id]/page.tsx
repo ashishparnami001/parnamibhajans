@@ -40,8 +40,8 @@ export default async function AuthorDetailPage({ params }: Props) {
         भजन ({authorBhajans.length})
       </h2>
       <div className="flex flex-col gap-3">
-        {authorBhajans.map(b => (
-          <BhajanCard key={b.id} bhajan={b} authorName={author.name} />
+        {authorBhajans.map(({ text: _, ...summary }) => (
+          <BhajanCard key={summary.id} bhajan={summary} authorName={author.name} />
         ))}
       </div>
     </div>

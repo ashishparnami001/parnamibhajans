@@ -6,14 +6,14 @@ import Link from 'next/link'
 export async function generateStaticParams() {
   const bhajans = await fetchBhajans()
   const collections = [...new Set(bhajans.flatMap(b => b.collections))]
-  return collections.map(c => ({ slug: encodeURIComponent(c) }))
+  return collections.map(c => ({ slug: c }))
 }
 
 interface Props { params: Promise<{ slug: string }> }
 
 export default async function CollectionDetailPage({ params }: Props) {
   const { slug } = await params
-  const name = decodeURIComponent(slug)
+  const name = slug
 
   const [bhajans, authors] = await Promise.all([fetchBhajans(), fetchAuthors()])
   const authorMap = Object.fromEntries(authors.map(a => [a.id, a.name]))
@@ -33,8 +33,8 @@ export default async function CollectionDetailPage({ params }: Props) {
         <span className="text-base font-normal text-gray-400 ml-2">({filtered.length} भजन)</span>
       </h1>
       <div className="flex flex-col gap-3">
-        {filtered.map(b => (
-          <BhajanCard key={b.id} bhajan={b} authorName={authorMap[b.author_id]} />
+        {filtered.map(({ text: _, ...summary }) => (
+          <BhajanCard key={summary.id} bhajan={summary} authorName={authorMap[summary.author_id]} />
         ))}
       </div>
     </div>
