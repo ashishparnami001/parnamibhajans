@@ -14,6 +14,10 @@ describe('parseBhajansCSV', () => {
     expect(bhajans[0].id).toBe(1)
     expect(bhajans[0].title).toBe('राम नाम')
     expect(bhajans[0].year).toBe(2020)
+    expect(bhajans[0].author_id).toBe(1)
+    expect(bhajans[0].date).toBe('2020-01-15')
+    expect(bhajans[0].search_keywords).toBe('ram sita')
+    expect(bhajans[0].youtube_url).toBe('')
   })
 
   it('splits tags into arrays', () => {
@@ -45,5 +49,8 @@ describe('parseAuthorsCSV', () => {
     expect(authors).toHaveLength(1)
     expect(authors[0].id).toBe(1)
     expect(authors[0].name).toBe('स्वर्णा पारनामी')
+    expect(authors[0].bio).toBe('भजन रचयिता')
+    expect(authors[0].photo_url).toBe('')
+    expect(authors[0].contact).toBe('')
   })
 })
