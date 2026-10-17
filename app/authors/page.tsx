@@ -7,18 +7,18 @@ export default async function AuthorsPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold text-[#1B4E7A] dark:text-[#C8DFF0] mb-6">
+      <h1 className="text-2xl font-bold text-[#14629F] dark:text-[#CFE6F7] mb-6">
         रचयिता <span className="text-base font-normal text-[#7A6550] dark:text-[#8A9AAA]">/ Authors</span>
       </h1>
       <div className="flex flex-col gap-4">
         {authors.map(author => (
           <Link key={author.id} href={`/authors/${author.id}`}
             className="card-temple flex items-center gap-4 p-4">
-            <div className="w-14 h-14 rounded-full bg-[#EDE4D2] dark:bg-[#1B3055] flex items-center justify-center text-2xl shrink-0">
+            <div className="w-14 h-14 rounded-full bg-[#EDE3CD] dark:bg-[#1D4068] flex items-center justify-center text-2xl shrink-0">
               🙏
             </div>
             <div>
-              <h2 className="font-semibold text-[#1B4E7A] dark:text-[#C8DFF0]">{author.name}</h2>
+              <h2 className="font-semibold text-[#14629F] dark:text-[#CFE6F7]">{author.name}</h2>
               <p className="text-sm text-[#7A6550] dark:text-[#8A9AAA]">{counts[author.id] ?? 0} भजन</p>
             </div>
           </Link>

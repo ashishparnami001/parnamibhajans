@@ -113,13 +113,13 @@ export default function SearchBar({
           aria-autocomplete="list"
           aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
           autoComplete="off"
-          className="w-full rounded-xl border border-[#D4C4A0] bg-[#FDFAF5] dark:bg-[#0F2040] dark:border-[#1B3055] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#1B4E7A] dark:focus:ring-[#2E6FA8]"
+          className="w-full rounded-xl border border-[#DACAAE] bg-[#FFFBF3] dark:bg-[#0E2A4A] dark:border-[#1D4068] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#14629F] dark:focus:ring-[#2A86C8]"
         />
         {showList && (
           <ul
             id={listId}
             role="listbox"
-            className="absolute z-20 left-0 right-0 mt-1 overflow-hidden rounded-xl border border-[#D4C4A0] bg-[#FDFAF5] dark:bg-[#0F2040] dark:border-[#1B3055] shadow-lg"
+            className="absolute z-20 left-0 right-0 mt-1 overflow-hidden rounded-xl border border-[#DACAAE] bg-[#FFFBF3] dark:bg-[#0E2A4A] dark:border-[#1D4068] shadow-lg"
           >
             {matches.map((item, index) => (
               <li
@@ -134,7 +134,7 @@ export default function SearchBar({
                 }}
                 onMouseEnter={() => setActive(index)}
                 className={`cursor-pointer px-4 py-2 ${
-                  index === active ? 'bg-[#EDE4D2] dark:bg-[#1B3055]' : ''
+                  index === active ? 'bg-[#EDE3CD] dark:bg-[#1D4068]' : ''
                 }`}
               >
                 <div className="truncate text-base">{item.title}</div>
@@ -154,15 +154,15 @@ export default function SearchBar({
         aria-label={listening ? 'Listening...' : 'Voice search'}
         className={`rounded-xl px-4 py-3 border text-xl transition-colors ${
           listening
-            ? 'bg-[#C4962A] border-[#C4962A] text-white animate-pulse'
-            : 'bg-[#FDFAF5] dark:bg-[#0F2040] border-[#D4C4A0] dark:border-[#1B3055] hover:bg-[#EDE4D2]'
+            ? 'bg-[#CFA620] border-[#CFA620] text-white animate-pulse'
+            : 'bg-[#FFFBF3] dark:bg-[#0E2A4A] border-[#DACAAE] dark:border-[#1D4068] hover:bg-[#EDE3CD]'
         }`}
       >
         🎤
       </button>
       <button
         type="submit"
-        className="rounded-xl px-4 py-3 bg-[#1B4E7A] hover:bg-[#2E6FA8] text-white font-medium transition-colors"
+        className="rounded-xl px-4 py-3 bg-[#14629F] hover:bg-[#2A86C8] text-white font-medium transition-colors"
       >
         खोज
       </button>

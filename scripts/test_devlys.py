@@ -4,7 +4,18 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from devlys_docx_to_csv import devlys_to_unicode as c  # noqa: E402
+from devlys_docx_to_csv import devlys_to_unicode as c, _section_name  # noqa: E402
+
+
+class SectionName(unittest.TestCase):
+    def test_serial_numbers_and_typos_are_removed(self):
+        cases = {
+            'वन्दना-1': 'वन्दना', 'भजन 32': 'भजन', 'भजन -': 'भजन', '144 भजन': 'भजन',
+            'भनज': 'भजन', 'कव्वाली': 'कव्वाली', '': 'भजन',
+        }
+        for source, expected in cases.items():
+            with self.subTest(source=source):
+                self.assertEqual(_section_name([source]), expected)
 
 
 class DevlysToUnicode(unittest.TestCase):

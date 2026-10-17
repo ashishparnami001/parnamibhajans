@@ -14,6 +14,7 @@ Usage:
 
 Output:
     <out>/bhajans.csv    id,title,tarz,text,author_id,date,year,tags,collections,search_keywords,youtube_url
+                         (section column -> tags; every bhajan -> --collection)
     <out>/lyricists.csv  id,name,bio,photo_url,contact
 
 Standard library only.
@@ -172,12 +173,22 @@ def _one_line(paragraphs):
     return re.sub(r'\s+', ' ', ' '.join(paragraphs)).strip()
 
 
+# Used when the section cell is empty.
+DEFAULT_SECTION = 'भजन'
+
+# Typos in the section column of the source document.
+SECTION_TYPOS = {'भनज': 'भजन'}
+
+
 def _section_name(paragraphs):
-    # "वन्दना-1", "भजन 32", "भजन -" -> "वन्दना", "भजन": the trailing number is a serial.
-    return re.sub(r'\s*-?\s*\d*\s*$', '', _one_line(paragraphs))
+    # "वन्दना-1", "भजन 32", "भजन -", "144 भजन" -> "वन्दना", "भजन": a serial number
+    # before or after the name is dropped.
+    name = re.sub(r'^\d+\s*', '', _one_line(paragraphs))
+    name = re.sub(r'\s*-?\s*\d*\s*$', '', name)
+    return SECTION_TYPOS.get(name, name) or DEFAULT_SECTION
 
 
-def build_bhajans(rows, author_id: int):
+def build_bhajans(rows, author_id: int, collection: str):
     bhajans, problems = [], []
     seen_ids = set()
     for position, cells in enumerate(rows[1:], start=2):  # row 1 is the header
@@ -199,8 +210,9 @@ def build_bhajans(rows, author_id: int):
             'tarz': _one_line(tarz),
             'text': '\n'.join(lyrics),
             'author_id': author_id,
-            'date': '', 'year': '', 'tags': '',
-            'collections': _section_name(section),
+            'date': '', 'year': '',
+            'tags': _section_name(section),  # भजन, वन्दना, कव्वाली, ... are search tags
+            'collections': collection,       # the book all these bhajans come from
             'search_keywords': '', 'youtube_url': '',
         }
         if not record['title'] and record['text']:
@@ -209,7 +221,7 @@ def build_bhajans(rows, author_id: int):
         if not record['text']:
             problems.append(f'row {position} (id {bhajan_id}): empty lyrics')
         leftovers = {c for c in LATIN_LETTER.findall(
-            ' '.join(str(record[k]) for k in ('title', 'tarz', 'text', 'collections')))}
+            ' '.join(str(record[k]) for k in ('title', 'tarz', 'text', 'tags')))}
         if leftovers:
             problems.append(f'row {position} (id {bhajan_id}): unconverted Latin letters '
                             f'{"".join(sorted(leftovers))}')
@@ -229,11 +241,13 @@ def main():
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('docx', type=Path)
     parser.add_argument('--lyricist', required=True, help='name used for every bhajan')
+    parser.add_argument('--collection', default='Bhajnawali 1',
+                        help='collection name used for every bhajan (the book)')
     parser.add_argument('--out', type=Path, default=Path('data'))
     args = parser.parse_args()
 
     rows = read_table_rows(args.docx)
-    bhajans, problems = build_bhajans(rows, author_id=1)
+    bhajans, problems = build_bhajans(rows, author_id=1, collection=args.collection)
 
     args.out.mkdir(parents=True, exist_ok=True)
     write_csv(args.out / 'bhajans.csv', BHAJAN_COLUMNS, bhajans)

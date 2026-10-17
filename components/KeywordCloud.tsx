@@ -18,7 +18,7 @@ export default function KeywordCloud({ tags }: Props) {
             key={tag.value}
             href={`/search?q=${encodeURIComponent(tag.value)}`}
             style={{ fontSize: `${size}rem` }}
-            className="bg-[#EDE4D2] dark:bg-[#1B3055] text-[#1B4E7A] dark:text-[#C8DFF0] hover:bg-[#C4962A] hover:text-white dark:hover:bg-[#C4962A] dark:hover:text-white rounded-full px-3 py-1 transition-colors cursor-pointer"
+            className="bg-[#EDE3CD] dark:bg-[#1D4068] text-[#14629F] dark:text-[#CFE6F7] hover:bg-[#CFA620] hover:text-white dark:hover:bg-[#CFA620] dark:hover:text-white rounded-full px-3 py-1 transition-colors cursor-pointer"
           >
             {tag.value}
           </Link>

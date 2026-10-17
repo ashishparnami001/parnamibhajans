@@ -29,14 +29,14 @@ export default function FontSizeControl() {
       <button
         onClick={() => setIdx(i => Math.max(0, (i ?? DEFAULT_IDX) - 1))}
         disabled={currentIdx === 0}
-        className="w-8 h-8 rounded-full border border-[#D4C4A0] dark:border-[#1B3055] flex items-center justify-center text-xs hover:bg-[#EDE4D2] dark:hover:bg-[#1B3055] disabled:opacity-30"
+        className="w-8 h-8 rounded-full border border-[#DACAAE] dark:border-[#1D4068] flex items-center justify-center text-xs hover:bg-[#EDE3CD] dark:hover:bg-[#1D4068] disabled:opacity-30"
         aria-label="Decrease font size"
       >A−</button>
       <span className="text-xs text-[#7A6550] w-10 text-center">{SIZES[currentIdx]}px</span>
       <button
         onClick={() => setIdx(i => Math.min(SIZES.length - 1, (i ?? DEFAULT_IDX) + 1))}
         disabled={currentIdx === SIZES.length - 1}
-        className="w-8 h-8 rounded-full border border-[#D4C4A0] dark:border-[#1B3055] flex items-center justify-center text-xs hover:bg-[#EDE4D2] dark:hover:bg-[#1B3055] disabled:opacity-30"
+        className="w-8 h-8 rounded-full border border-[#DACAAE] dark:border-[#1D4068] flex items-center justify-center text-xs hover:bg-[#EDE3CD] dark:hover:bg-[#1D4068] disabled:opacity-30"
         aria-label="Increase font size"
       >A+</button>
     </div>
