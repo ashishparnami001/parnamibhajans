@@ -14,12 +14,12 @@ export default function BhajanCard({ bhajan, authorName }: Props) {
       href={`/bhajans/${bhajan.id}`}
       className="card-temple block p-4"
     >
-      <h2 className="text-lg font-semibold text-[#1B4E7A] dark:text-[#C8DFF0] mb-1">
+      <h2 className="text-lg font-semibold text-[#14629F] dark:text-[#CFE6F7] mb-1">
         {bhajan.title}
       </h2>
       <div className="flex items-center justify-between text-xs text-[#7A6550] dark:text-[#6A7A8A]">
         <span>{authorName ?? 'अज्ञात'}</span>
-        <span>{bhajan.year}</span>
+        {bhajan.year > 0 && <span>{bhajan.year}</span>}
       </div>
       {bhajan.tags.length > 0 && (
         <div className="flex flex-wrap gap-1 mt-2">

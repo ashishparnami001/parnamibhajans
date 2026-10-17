@@ -15,14 +15,14 @@ export default async function CollectionsPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold text-[#1B4E7A] dark:text-[#C8DFF0] mb-6">
+      <h1 className="text-2xl font-bold text-[#14629F] dark:text-[#CFE6F7] mb-6">
         संग्रह <span className="text-base font-normal text-[#7A6550] dark:text-[#8A9AAA]">/ Collections</span>
       </h1>
       <div className="grid grid-cols-2 gap-3">
         {collections.map(([name, count]) => (
           <Link key={name} href={`/collections/${encodeURIComponent(name)}`}
             className="card-temple p-4 text-center">
-            <p className="font-medium text-[#1B4E7A] dark:text-[#C8DFF0]">{name}</p>
+            <p className="font-medium text-[#14629F] dark:text-[#CFE6F7]">{name}</p>
             <p className="text-sm text-[#7A6550] dark:text-[#8A9AAA] mt-1">{count} भजन</p>
           </Link>
         ))}

@@ -36,9 +36,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="hi" suppressHydrationWarning>
-      <body className={`${notoDevanagari.variable} ${notoSerifDevanagari.variable} ${crimsonPro.variable} min-h-screen pb-20 md:pb-0`}>
-        <header className="hidden md:flex items-center justify-between px-6 py-3 bg-[#1B4E7A] dark:bg-[#0F2040] sticky top-0 z-40 shadow-md">
-          <span className={`${crimsonPro.variable} font-semibold text-[#C4962A] text-xl tracking-wide`}>{SITE_NAME}</span>
+      {/* Browser extensions (e.g. ColorZilla) add attributes to <body> before React loads */}
+      <body
+        suppressHydrationWarning
+        className={`${notoDevanagari.variable} ${notoSerifDevanagari.variable} ${crimsonPro.variable} min-h-screen pb-20 md:pb-0`}
+      >
+        <header className="hidden md:flex items-center justify-between px-6 py-3 bg-[#14629F] dark:bg-[#0E2A4A] sticky top-0 z-40 shadow-md">
+          <span className={`${crimsonPro.variable} font-semibold text-[#CFA620] text-xl tracking-wide`}>{SITE_NAME}</span>
           <div className="flex items-center gap-2">
             <DesktopNav />
             <DarkModeToggle />

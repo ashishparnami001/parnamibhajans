@@ -1,6 +1,7 @@
 export interface Bhajan {
   id: number
   title: string
+  tarz: string          // tune reference (तर्ज), empty string if absent
   text: string
   author_id: number
   date: string

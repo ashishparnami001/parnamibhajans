@@ -1,6 +1,7 @@
 'use client'
 import { useState, useMemo } from 'react'
 import { Bhajan, Author } from '@/lib/types'
+import { compareNewestFirst } from '@/lib/sort'
 import BhajanCard from './BhajanCard'
 
 type BhajanSummary = Omit<Bhajan, 'text'>
@@ -10,7 +11,7 @@ interface Props {
   authors: Author[]
 }
 
-const sel = "rounded-lg border border-[#D4C4A0] dark:border-[#1B3055] bg-[#FDFAF5] dark:bg-[#0F2040] text-[#3D2010] dark:text-[#EDE4D2] px-3 py-2 text-sm"
+const sel = "rounded-lg border border-[#DACAAE] dark:border-[#1D4068] bg-[#FFFBF3] dark:bg-[#0E2A4A] text-[#44201A] dark:text-[#EDE3CD] px-3 py-2 text-sm"
 
 export default function BrowseFilters({ bhajans, authors }: Props) {
   const [authorFilter, setAuthorFilter] = useState('all')
@@ -22,7 +23,7 @@ export default function BrowseFilters({ bhajans, authors }: Props) {
     [authors]
   )
   const years = useMemo(
-    () => [...new Set(bhajans.map(b => b.year))].sort((a, b) => b - a),
+    () => [...new Set(bhajans.map(b => b.year))].filter(y => y > 0).sort((a, b) => b - a),
     [bhajans]
   )
   const collections = useMemo(
@@ -35,7 +36,7 @@ export default function BrowseFilters({ bhajans, authors }: Props) {
         .filter(b => authorFilter === 'all' || String(b.author_id) === authorFilter)
         .filter(b => yearFilter === 'all' || String(b.year) === yearFilter)
         .filter(b => collectionFilter === 'all' || b.collections.includes(collectionFilter))
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
+        .sort(compareNewestFirst),
     [bhajans, authorFilter, yearFilter, collectionFilter]
   )
 

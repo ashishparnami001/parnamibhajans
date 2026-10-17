@@ -37,8 +37,8 @@ export default function WakeLockButton() {
       title={active ? 'Screen will stay on' : 'Keep screen on while reading'}
       className={`text-xs px-2 py-1 rounded-lg border transition-colors ${
         active
-          ? 'bg-[#D4EBE4] border-[#4A7A6A] text-[#2A5A4E] dark:bg-[#1B3055] dark:border-[#4A7A6A] dark:text-[#7AB0A0]'
-          : 'border-[#D4C4A0] dark:border-[#1B3055] text-[#7A6550] hover:bg-[#EDE4D2] dark:hover:bg-[#1B3055]'
+          ? 'bg-[#D5F0EE] border-[#1F8A87] text-[#12605E] dark:bg-[#1D4068] dark:border-[#1F8A87] dark:text-[#5BC0BC]'
+          : 'border-[#DACAAE] dark:border-[#1D4068] text-[#7A6550] hover:bg-[#EDE3CD] dark:hover:bg-[#1D4068]'
       }`}
     >
       {active ? '🌞 On' : '💤 Sleep'}

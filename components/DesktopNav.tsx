@@ -24,8 +24,8 @@ export default function DesktopNav() {
             href={item.href}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm transition-colors ${
               isActive
-                ? 'text-[#E8C060] font-semibold bg-white/10'
-                : 'text-[#C8DFF0] hover:text-[#E8C060] hover:bg-white/10'
+                ? 'text-[#EBD36B] font-semibold bg-white/10'
+                : 'text-[#CFE6F7] hover:text-[#EBD36B] hover:bg-white/10'
             }`}
           >
             <item.Icon size={14} strokeWidth={isActive ? 2.5 : 1.8} />

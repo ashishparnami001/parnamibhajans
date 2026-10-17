@@ -23,23 +23,23 @@ export default async function BhajanDetailPage({ params }: Props) {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
-      <Link href="/bhajans" className="text-sm text-[#C4962A] hover:text-[#1B4E7A] dark:text-[#E8C060] mb-4 block">
+      <Link href="/bhajans" className="text-sm text-[#CFA620] hover:text-[#14629F] dark:text-[#EBD36B] mb-4 block">
         ← सभी भजन
       </Link>
 
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-[#1B4E7A] dark:text-[#C8DFF0] mb-1">{bhajan.title}</h1>
+        <h1 className="text-2xl font-bold text-[#14629F] dark:text-[#CFE6F7] mb-1">{bhajan.title}</h1>
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[#7A6550] dark:text-[#8A9AAA]">
-          {author && <Link href={`/authors/${author.id}`} className="text-[#C4962A] hover:text-[#1B4E7A] dark:text-[#E8C060]">{author.name}</Link>}
-          <span>{bhajan.year}</span>
+          {author && <Link href={`/authors/${author.id}`} className="text-[#CFA620] hover:text-[#14629F] dark:text-[#EBD36B]">{author.name}</Link>}
+          {bhajan.year > 0 && <span>{bhajan.year}</span>}
           {bhajan.collections.map(c => (
             <Link key={c} href={`/collections/${encodeURIComponent(c)}`}
-              className="text-[#C4962A] hover:text-[#1B4E7A] dark:text-[#E8C060]">{c}</Link>
+              className="text-[#CFA620] hover:text-[#14629F] dark:text-[#EBD36B]">{c}</Link>
           ))}
         </div>
       </div>
 
-      <div className="flex items-center justify-between mb-6 py-3 border-y border-[#D4C4A0] dark:border-[#1B3055]">
+      <div className="flex items-center justify-between mb-6 py-3 border-y border-[#DACAAE] dark:border-[#1D4068]">
         <FontSizeControl />
         <div className="flex gap-2">
           <WakeLockButton />

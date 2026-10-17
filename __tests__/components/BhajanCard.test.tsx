@@ -3,7 +3,7 @@ import BhajanCard from '@/components/BhajanCard'
 import { Bhajan } from '@/lib/types'
 
 const BHAJAN: Bhajan = {
-  id: 1, title: 'राम नाम', text: 'राम राम सीता राम\nजय जय राम',
+  id: 1, title: 'राम नाम', tarz: '', text: 'राम राम सीता राम\nजय जय राम',
   author_id: 1, date: '2020-01-15', year: 2020,
   tags: ['राम', 'सीता'], collections: ['प्रभात भजन'],
   search_keywords: 'ram sita', youtube_url: '',
