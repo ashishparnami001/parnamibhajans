@@ -29,6 +29,12 @@ export default async function BhajanDetailPage({ params }: Props) {
 
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[#14629F] dark:text-[#CFE6F7] mb-1">{bhajan.title}</h1>
+        {bhajan.tarz && (
+          <p className="mb-2 text-base italic text-[#44201A] dark:text-[#EDE3CD]">
+            <span className="not-italic font-semibold text-[#8E1B2B] dark:text-[#EBD36B]">तर्ज:</span>{' '}
+            {bhajan.tarz}
+          </p>
+        )}
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[#7A6550] dark:text-[#8A9AAA]">
           {author && <Link href={`/authors/${author.id}`} className="text-[#CFA620] hover:text-[#14629F] dark:text-[#EBD36B]">{author.name}</Link>}
           {bhajan.year > 0 && <span>{bhajan.year}</span>}
