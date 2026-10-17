@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { fetchBhajans, fetchAuthors } from '@/lib/fetchSheets'
+import { compareNewestFirst } from '@/lib/sort'
 import BhajanCard from '@/components/BhajanCard'
 import Link from 'next/link'
 
@@ -19,7 +20,7 @@ export default async function CollectionDetailPage({ params }: Props) {
   const authorMap = Object.fromEntries(authors.map(a => [a.id, a.name]))
   const filtered = bhajans
     .filter(b => b.collections.includes(name))
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort(compareNewestFirst)
 
   if (filtered.length === 0) notFound()
 

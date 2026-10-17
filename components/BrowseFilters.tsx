@@ -1,6 +1,7 @@
 'use client'
 import { useState, useMemo } from 'react'
 import { Bhajan, Author } from '@/lib/types'
+import { compareNewestFirst } from '@/lib/sort'
 import BhajanCard from './BhajanCard'
 
 type BhajanSummary = Omit<Bhajan, 'text'>
@@ -22,7 +23,7 @@ export default function BrowseFilters({ bhajans, authors }: Props) {
     [authors]
   )
   const years = useMemo(
-    () => [...new Set(bhajans.map(b => b.year))].sort((a, b) => b - a),
+    () => [...new Set(bhajans.map(b => b.year))].filter(y => y > 0).sort((a, b) => b - a),
     [bhajans]
   )
   const collections = useMemo(
@@ -35,7 +36,7 @@ export default function BrowseFilters({ bhajans, authors }: Props) {
         .filter(b => authorFilter === 'all' || String(b.author_id) === authorFilter)
         .filter(b => yearFilter === 'all' || String(b.year) === yearFilter)
         .filter(b => collectionFilter === 'all' || b.collections.includes(collectionFilter))
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
+        .sort(compareNewestFirst),
     [bhajans, authorFilter, yearFilter, collectionFilter]
   )
 

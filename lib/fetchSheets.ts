@@ -1,6 +1,15 @@
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 import Papa from 'papaparse'
 import { Bhajan, Author } from './types'
-import { BHAJANS_CSV_URL, AUTHORS_CSV_URL } from './config'
+import {
+  BHAJANS_CSV_URL,
+  AUTHORS_CSV_URL,
+  LOCAL_BHAJANS_CSV,
+  LOCAL_AUTHORS_CSV,
+  DEFAULT_BHAJANS_CSV_URL,
+  DEFAULT_AUTHORS_CSV_URL,
+} from './config'
 
 function splitCSVList(value: string): string[] {
   if (!value || !value.trim()) return []
@@ -18,6 +27,7 @@ export function parseBhajansCSV(csvText: string): Bhajan[] {
   return data.map(row => ({
     id: Number(row.id) || 0,
     title: row.title ?? '',
+    tarz: row.tarz ?? '',
     text: row.text ?? '',
     author_id: Number(row.author_id) || 0,
     date: row.date ?? '',
@@ -46,20 +56,37 @@ export function parseAuthorsCSV(csvText: string): Author[] {
   }))
 }
 
+// Reads data/<fileName>. Returns null when the file does not exist.
+async function readLocalCSV(fileName: string): Promise<string | null> {
+  try {
+    const text = await readFile(path.join(process.cwd(), 'data', fileName), 'utf-8')
+    return text.replace(/^﻿/, '') // a spreadsheet export may start with a byte-order mark
+  } catch {
+    return null
+  }
+}
+
+async function fetchCSV(url: string): Promise<string> {
+  const res = await fetch(url, { next: { revalidate: 3600 } })
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`)
+  return res.text()
+}
+
+// envUrl set -> that URL; else the local file; else the default sheet.
+export async function loadCSV(envUrl: string, localFile: string, defaultUrl: string): Promise<string> {
+  if (envUrl) return fetchCSV(envUrl)
+  const local = await readLocalCSV(localFile)
+  if (local !== null) return local
+  return fetchCSV(defaultUrl)
+}
+
 export async function fetchBhajans(): Promise<Bhajan[]> {
-  const res = await fetch(BHAJANS_CSV_URL, { next: { revalidate: 3600 } })
-  if (!res.ok) throw new Error(`Failed to fetch bhajans: ${res.status}`)
-  return parseBhajansCSV(await res.text())
+  return parseBhajansCSV(await loadCSV(BHAJANS_CSV_URL, LOCAL_BHAJANS_CSV, DEFAULT_BHAJANS_CSV_URL))
 }
 
 export async function fetchAuthors(): Promise<Author[]> {
   try {
-    const res = await fetch(AUTHORS_CSV_URL, { next: { revalidate: 3600 } })
-    if (!res.ok) {
-      console.warn(`fetchAuthors: HTTP ${res.status} — returning empty array. Set AUTHORS_CSV_URL env var.`)
-      return []
-    }
-    return parseAuthorsCSV(await res.text())
+    return parseAuthorsCSV(await loadCSV(AUTHORS_CSV_URL, LOCAL_AUTHORS_CSV, DEFAULT_AUTHORS_CSV_URL))
   } catch (err) {
     console.warn('fetchAuthors: fetch failed — returning empty array.', err)
     return []

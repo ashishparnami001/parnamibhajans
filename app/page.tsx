@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { fetchBhajans, fetchAuthors } from '@/lib/fetchSheets'
 import { getTagFrequencies } from '@/lib/search'
+import { buildSuggestIndex } from '@/lib/suggest'
+import { compareNewestFirst } from '@/lib/sort'
 import { RECENT_BHAJANS_COUNT, SITE_NAME, SITE_TAGLINE } from '@/lib/config'
 import BhajanCard from '@/components/BhajanCard'
 import KeywordCloud from '@/components/KeywordCloud'
@@ -12,7 +14,7 @@ export default async function HomePage() {
   const authorMap = Object.fromEntries(authors.map(a => [a.id, a.name]))
   const tagFreqs = getTagFrequencies(bhajans)
   const recent = [...bhajans]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort(compareNewestFirst)
     .slice(0, RECENT_BHAJANS_COUNT)
 
   return (
@@ -23,7 +25,7 @@ export default async function HomePage() {
         <p className="text-sm text-[#7A6550] dark:text-[#8A9AAA] mt-1">{bhajans.length} भजन</p>
       </div>
 
-      <SearchBar />
+      <SearchBar suggestions={buildSuggestIndex(bhajans, authors)} />
 
       {tagFreqs.length > 0 && (
         <section className="mt-8">

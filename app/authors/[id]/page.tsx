@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { fetchAuthors, fetchBhajans } from '@/lib/fetchSheets'
+import { compareNewestFirst } from '@/lib/sort'
 import BhajanCard from '@/components/BhajanCard'
 import Link from 'next/link'
 
@@ -19,7 +20,7 @@ export default async function AuthorDetailPage({ params }: Props) {
 
   const authorBhajans = bhajans
     .filter(b => b.author_id === author.id)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort(compareNewestFirst)
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">

@@ -31,7 +31,7 @@ export default async function BhajanDetailPage({ params }: Props) {
         <h1 className="text-2xl font-bold text-[#1B4E7A] dark:text-[#C8DFF0] mb-1">{bhajan.title}</h1>
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[#7A6550] dark:text-[#8A9AAA]">
           {author && <Link href={`/authors/${author.id}`} className="text-[#C4962A] hover:text-[#1B4E7A] dark:text-[#E8C060]">{author.name}</Link>}
-          <span>{bhajan.year}</span>
+          {bhajan.year > 0 && <span>{bhajan.year}</span>}
           {bhajan.collections.map(c => (
             <Link key={c} href={`/collections/${encodeURIComponent(c)}`}
               className="text-[#C4962A] hover:text-[#1B4E7A] dark:text-[#E8C060]">{c}</Link>
